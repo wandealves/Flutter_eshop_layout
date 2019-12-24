@@ -1,3 +1,4 @@
+import 'package:eshop/pages/home.page.dart';
 import 'package:eshop/pages/signup.page.dart';
 import 'package:flutter/material.dart';
 
@@ -122,7 +123,12 @@ class LoginPage extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
                         ),
                       ),
                     ],
