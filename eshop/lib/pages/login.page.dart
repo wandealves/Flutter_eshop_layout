@@ -123,12 +123,7 @@ class LoginPage extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
-                          },
+                          onPressed: () {},
                         ),
                       ),
                     ],
