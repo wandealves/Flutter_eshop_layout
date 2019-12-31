@@ -9,7 +9,7 @@ class CartPage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              child: productList(),
+              child: productList(context),
             ),
           ),
           Container(
@@ -32,7 +32,7 @@ class CartPage extends StatelessWidget {
                       Text(
                         "\$4250",
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
@@ -44,7 +44,7 @@ class CartPage extends StatelessWidget {
                   height: 50,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(
                       Radius.circular(5),
                     ),
@@ -55,7 +55,9 @@ class CartPage extends StatelessWidget {
                   child: FlatButton(
                     child: Text(
                       "Checkout",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                     onPressed: () => {},
                   ),
@@ -69,26 +71,20 @@ class CartPage extends StatelessWidget {
   }
 }
 
-Widget productList() {
+Widget productList(context) {
   return ListView(
     children: <Widget>[
-      ProductItem(),
-      ProductItem(),
-      ProductItem(),
-      ProductItem(),
-      ProductItem(),
-      ProductItem(),
-      /*  ProductItem(context, "BeoPlay Speaker", "755", "assets/product-1.png"),
-      ProductItem(context, "Leather Wristwatch", "450", "assets/product-2.png"),
-      ProductItem(context, "Smart Bluetooth Speaker", "900", "assets/product-3.png"),
-      ProductItem(context, "Smart Luggage", "100", "assets/product-4.png"),
-      ProductItem(context, "Speakers Stand", "49", "assets/product-6.png"),
-      ProductItem(context, "AirPods", "199", "assets/product-7.png"),*/
+      ProductItem(context),
+      ProductItem(context),
+      ProductItem(context),
+      ProductItem(context),
+      ProductItem(context),
+      ProductItem(context),
     ],
   );
 }
 
-Widget ProductItem() {
+Widget ProductItem(context) {
   return Container(
     height: 120,
     margin: EdgeInsets.all(5),
@@ -115,7 +111,7 @@ Widget ProductItem() {
               Text(
                 "\$200",
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               SizedBox(
