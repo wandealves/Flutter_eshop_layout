@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:eshop/widgets/search-box.widget.dart';
-import 'package:eshop/widgets/category/category-list.widget.dart';
-import 'package:eshop/widgets/product/product-list.widget.dart';
+import 'package:eshop/ui/widgets/search-box.widget.dart';
+import 'package:eshop/ui/widgets/category/category-list.widget.dart';
+import 'package:eshop/ui/widgets/product/product-list.widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  SerachBox(),
+                  SearchBox(),
                   SizedBox(
                     height: 30,
                   ),

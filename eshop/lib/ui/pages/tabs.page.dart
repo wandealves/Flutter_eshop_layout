@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:eshop/pages/cart.page.dart';
-import 'package:eshop/pages/home.page.dart';
-import 'package:eshop/pages/login.page.dart';
+import 'package:eshop/ui/pages/cart.page.dart';
+import 'package:eshop/ui/pages/home.page.dart';
+import 'package:eshop/ui/pages/login.page.dart';
 
 class TabsPage extends StatelessWidget {
   @override

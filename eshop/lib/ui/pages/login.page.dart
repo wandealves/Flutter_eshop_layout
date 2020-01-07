@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:eshop/pages/signup.page.dart';
+import 'package:eshop/ui/pages/signup.page.dart';
 
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

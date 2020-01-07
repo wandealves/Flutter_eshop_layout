@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:eshop/pages/tabs.page.dart';
+import 'package:eshop/ui/pages/tabs.page.dart';
 import 'package:eshop/themes/light.theme.dart';
 
 void main() => runApp(MyApp());

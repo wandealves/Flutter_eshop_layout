@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:eshop/widgets/product/product-card.widget.dart';
+import 'package:eshop/ui/widgets/product/product-card.widget.dart';
 
 class ProductList extends StatelessWidget {
   final Axis scrollDirection;
