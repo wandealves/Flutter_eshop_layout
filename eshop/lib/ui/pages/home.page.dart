@@ -61,7 +61,9 @@ class HomePage extends StatelessWidget {
                   ),
                   Container(
                     height: 350,
-                    child: ProductList(),
+                    child: ProductList(
+                      products: bloc.products,
+                    ),
                   ),
                 ],
               ),

@@ -1,45 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'package:eshop/ui/widgets/product/product-card.widget.dart';
+import 'package:eshop/models/product-list-item.model.dart';
+import 'package:eshop/ui/widgets/shared/loader.widget.dart';
 
 class ProductList extends StatelessWidget {
   final Axis scrollDirection;
+  final List<ProductListItemModel> products;
 
-  const ProductList({this.scrollDirection = Axis.horizontal});
+  const ProductList({this.products, this.scrollDirection = Axis.horizontal});
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
-      child: ListView(
-        scrollDirection: scrollDirection,
-        children: <Widget>[
-          ProductCard(
-            title: "Nike Dry-Fit Long Sleeve",
-            description: "Nike",
-            image: "assets/product-10.png",
-            price: 150,
-          ),
-          ProductCard(
-            title: "BeoPlay Speaker",
-            description: "Bang and Olufsen",
-            image: "assets/product-1.png",
-            price: 755,
-          ),
-          ProductCard(
-            title: "Leather Wristwatch",
-            description: "Tag Heuer",
-            image: "assets/product-2.png",
-            price: 450,
-          ),
-          ProductCard(
-            title: "Smart Bluetooth Speaker",
-            description: "Google Inc.",
-            image: "assets/product-3.png",
-            price: 900,
-          ),
-        ],
+      height: 410,
+      child: Loader(
+        object: products,
+        callback: list,
       ),
+    );
+  }
+
+  Widget list() {
+    return ListView.builder(
+      scrollDirection: scrollDirection,
+      itemCount: products.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.all(5),
+          child: ProductCard(
+            item: products[index],
+          ),
+        );
+      },
     );
   }
 }
