@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                    height: 90,
+                    height: 100,
                     child: CategoryList(
                       categories: bloc.categories,
                     ),

@@ -7,6 +7,9 @@ class GenericProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoActivityIndicator()
-        : CircularProgressIndicator();
+        : CircularProgressIndicator(
+            backgroundColor: Theme.of(context).primaryColor,
+            strokeWidth: 2,
+          );
   }
 }
