@@ -1,12 +1,16 @@
+import 'package:eshop/blocs/home.bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:eshop/ui/widgets/search-box.widget.dart';
 import 'package:eshop/ui/widgets/category/category-list.widget.dart';
 import 'package:eshop/ui/widgets/product/product-list.widget.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final HomeBloc bloc = Provider.of<HomeBloc>(context);
+
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -32,7 +36,9 @@ class HomePage extends StatelessWidget {
                   ),
                   Container(
                     height: 90,
-                    child: CategoryList(),
+                    child: CategoryList(
+                      categories: bloc.categories,
+                    ),
                   ),
                   SizedBox(
                     height: 30,
