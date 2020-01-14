@@ -1,20 +1,42 @@
+import 'package:eshop/models/product-details.model.dart';
+import 'package:eshop/repositories/product.repository.dart';
+import 'package:eshop/ui/widgets/shared/progress-indicator.widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  final String image;
-  final String title;
-  final String description;
-  final double price;
+  final String tag;
+  final _repository = new ProductRepository();
 
-  const ProductPage({
-    @required this.image,
-    @required this.title,
-    @required this.description,
-    @required this.price,
-  });
+  ProductPage({@required this.tag});
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<ProductDetailsModel>(
+      future: _repository.get(tag),
+      builder: (context, snapshot) {
+        ProductDetailsModel product = snapshot.data;
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+            return Text("Aguardando...");
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return Center(
+              child: GenericProgressIndicator(),
+            );
+          case ConnectionState.done:
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("Não foi possível obter o produto."),
+              );
+            }
+            return content(product);
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget content(ProductDetailsModel product) {
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -22,17 +44,24 @@ class ProductPage extends StatelessWidget {
             SliverAppBar(
               backgroundColor: Colors.white.withOpacity(0),
               elevation: 0.0,
-              expandedHeight: 500.0,
+              expandedHeight: 300.0,
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 background: Hero(
-                  tag: image,
-                  child: Image.asset(
-                    image,
-                    width: double.infinity,
-                    fit: BoxFit.fitHeight,
+                  tag: product.images[0],
+                  child: new ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: product.images.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return Container(
+                        width: 200,
+                        child: Image.network(
+                          product.images[index],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -48,7 +77,7 @@ class ProductPage extends StatelessWidget {
                 right: 10,
               ),
               child: Text(
-                title,
+                product.title,
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -58,13 +87,13 @@ class ProductPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10),
               child: Text(
-                description,
+                product.description,
               ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Text(
-                "Details",
+                product.brand,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
